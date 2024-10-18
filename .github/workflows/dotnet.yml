@@ -26,11 +26,26 @@ jobs:
       run: dotnet build --no-restore
     - name: test
       run: dotnet test --no-build --verbosity normal
-
-  deploy:
+  deployToDev:
     runs-on: ubuntu-latest
     needs: build
     name: deploytodev
+    steps:
+    - uses: actions/checkout@v3
+    - name: Print greeting
+      run: echo Hello, world!
+  deployToQA:
+    runs-on: ubuntu-latest
+    needs: build
+    name: deploytoqa
+    steps:
+    - uses: actions/checkout@v3
+    - name: Print greeting
+      run: echo Hello, world!
+  deployToProd:
+    runs-on: ubuntu-latest
+    needs: build
+    name: deploytoprod
     steps:
     - uses: actions/checkout@v3
     - name: Print greeting
