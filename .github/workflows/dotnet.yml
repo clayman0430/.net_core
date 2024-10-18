@@ -23,4 +23,15 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: build
+      run: dotnet build --no-restore
+    - name: test
       run: dotnet test --no-build --verbosity normal
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    name: deploytodev
+    steps:
+    - uses: actions/checkout@v3
+    - name: Print greeting
+      run: echo Hello, world!
